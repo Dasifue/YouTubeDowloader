@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+
 from pytube import YouTube
 
-from .forms import VideoURLForm
-
 import os
+import pafy
+
+from .forms import VideoURLForm
 
 url = ""
 
@@ -16,6 +18,20 @@ def get_resolutions(streams):
             resolutions.append(vid.resolution)
     return resolutions
 
+def video_data(url):
+    video = pafy.new(url)
+
+    link = "https://www.youtube.com/embed/" + video.videoid
+    title = video.title
+    author = video.author
+
+    data = {
+        "yt_player": link ,
+        "title": title,
+        "author": author,
+    }
+
+    return data
 
 def videos_list(request):
     form = VideoURLForm()
@@ -29,7 +45,7 @@ def videos_list(request):
             resolutions = get_resolutions(streams=streams)
 
             context = {
-                "url": url,
+                "video_data": video_data(url=url),
                 "form": form,
                 "resolutions": resolutions,
                 "audio": "audio"
