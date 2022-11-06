@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from downloader.views import videos_list, download_video, download_audio
+from downloader.views.views import videos_list
+from downloader.views.download import download_video, download_audio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', videos_list, name='videos'),
-    path('download_video/<str:resolution>', download_video, name='download_video'),
-    path('download_audio/', download_audio, name="download_audio")
+    path('download_video/<str:video_id>/<str:resolution>', download_video, name='download_video'),
+    path('download_audio/<str:video_id>/', download_audio, name="download_audio")
 ]
