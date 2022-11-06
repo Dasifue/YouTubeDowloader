@@ -18,20 +18,21 @@
       <td><a href="{{video_data.yt_player}}">Link</a></td>
     </tr>
   </table> 
-{% endif %} 
 
 
 {% for resolution in resolutions %}
-<form action="{% url 'download_video' resolution=resolution %}">
+<form action="{% url 'download_video' video_id=video_data.id resolution=resolution %}">
     <input type="submit" value="{{resolution}}" />
 </form>
 {% endfor %}
 
 
 {% if audio %}
-<form action="{% url 'download_audio' %}">
+<form action="{% url 'download_audio' video_id=video_data.id %}">
     <input type="submit" value="Audio" />
 </form>
+{% endif %}
+
 {% endif %}
 
 {% endblock %}
