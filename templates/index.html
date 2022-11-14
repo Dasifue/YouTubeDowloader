@@ -12,16 +12,16 @@
 <header>
     <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
+          <a class="nav-link" href="{% url 'videos' %}">Clear</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{% url 'videos' %}">Back</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+            <a class="nav-link active" aria-current="page" href="#">Telegram bot</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About project</a>
         </li>
       </ul>
 </header>
@@ -29,14 +29,16 @@
 <body>
     <div class="card text-center">
         <div class="card-header">
-            Special title treatment
+            YouTube Downloader
         </div>
         <div class="card-body">
+          {% if form %}
           <h5 class="card-title">Enter link of the video</h5>
           <form method="post" id="1"> {% csrf_token %}
             {{form.url}} <br>
             <button type="submit" class="btn btn-dark">Find</button>
           </form>
+          {% endif %}
         </div>
         <div class="card-footer text-muted">
             {% block content %}
