@@ -1,7 +1,3 @@
-.body {
-  background-color: brown;
-}
-
 .info {
   margin-left: auto;
   margin-right: auto;
@@ -17,3 +13,6 @@ button {
   margin-right: 5px;
 }
 
+.error {
+  text-align: center !important;
+}
