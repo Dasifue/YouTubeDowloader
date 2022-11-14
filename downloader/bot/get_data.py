@@ -14,7 +14,7 @@ from telebot.types import (
 bot = TeleBot(settings.TELEGRAM_BOT_API_KEY, threaded=False)
 
 def get_videos(message):
-    text = "It will take some time. Pleace, be patient"
+    text = "It will take some time. Please, be patient. Карина не души"
     bot.send_message(message.chat.id, text=text, reply_markup=None)
     url = message.text
     markup = InlineKeyboardMarkup()

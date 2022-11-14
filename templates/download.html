@@ -2,11 +2,12 @@
 
 {% block content %}
 
-{% if video_data %}
-<iframe width="420" height="315" src="{{video_data.yt_player}}">
+
+<iframe width="420" height="315" src="https://youtu.be/8beaiQbttkk">
 </iframe> 
 
-<table>
+{% if video_data %}
+<table class="info">
     <tr>
       <th>Title</th>
       <th>Author</th>
@@ -18,21 +19,21 @@
       <td><a href="{{video_data.yt_player}}">Link</a></td>
     </tr>
   </table> 
-
-
-{% for resolution in resolutions %}
-<form action="{% url 'download_video' video_id=video_data.id resolution=resolution %}">
-    <input type="submit" value="{{resolution}}" />
-</form>
-{% endfor %}
-
-
-{% if audio %}
-<form action="{% url 'download_audio' video_id=video_data.id %}">
-    <input type="submit" value="Audio" />
-</form>
 {% endif %}
 
-{% endif %}
+<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  {% for resolution in resolutions %}
+    <form method="post" action="{% url 'download_video' video_id=video_data.id resolution=resolution %}"> {% csrf_token %}
+      <button type="submit" class="btn btn-dark download_b">{{resolution}}</button>
+    </form>
+  {% endfor %}
+  
+  {% if audio %}
+  <form method="post" action="{% url 'download_audio' video_id=video_data.id %}"> {% csrf_token %}
+    <button type="submit" class="btn btn-dark download_b">{{audio}}</button>
+  </form>
+  {% endif %}
+</div>
+
 
 {% endblock %}

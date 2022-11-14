@@ -1,17 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static '/css/download.css' %}">
 </head>
+<header>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+</header>
+
 <body>
-    <h2>Enter link to video</h2> 
-<form method="post" id="1"> {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Submit">
-</form>
-    {% block content %}
-    {% endblock %}
+    <div class="card text-center">
+        <div class="card-header">
+            Special title treatment
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Enter link of the video</h5>
+          <form method="post" id="1"> {% csrf_token %}
+            {{form.url}} <br>
+            <button type="submit" class="btn btn-dark">Find</button>
+          </form>
+        </div>
+        <div class="card-footer text-muted">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 </body>
 </html>

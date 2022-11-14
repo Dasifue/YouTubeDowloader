@@ -1,0 +1,19 @@
+.body {
+  background-color: brown;
+}
+
+.info {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.download_b {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
