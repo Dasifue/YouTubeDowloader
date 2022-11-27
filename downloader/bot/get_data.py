@@ -14,6 +14,8 @@ from telebot.types import (
 bot = TeleBot(settings.TELEGRAM_BOT_API_KEY, threaded=False)
 
 def get_videos(message):
+    text = "It will take some time. Please, be patient"
+    bot.send_message(message.chat.id, text=text, reply_markup=None)
     try:
         url = message.text
         markup = InlineKeyboardMarkup()
@@ -31,11 +33,11 @@ def get_videos(message):
         markup.add(audio)
         text = "Good. Now select video quality or just audio"
         bot.send_message(message.chat.id, text=text, reply_markup=markup)
-    except exceptions.RegexMatchError:
-        error_message = "Error. Сheck the link is correct or try again later" 
+    except (exceptions.RegexMatchError, ValueError):
+        error_message = "Error. Сheck the link is correct or try again later /new_link" 
         bot.send_message(message.chat.id, text=error_message, reply_markup=None)
     except TypeError:
-        error_message = "Error. Path the link!"
+        error_message = "Error. Path the link! /new_link"
         bot.send_message(message.chat.id, text=error_message, reply_markup=None)
 
 
