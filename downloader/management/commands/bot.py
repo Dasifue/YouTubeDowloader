@@ -14,8 +14,6 @@ def send_welcome_message(message):
     text = "Hello, nice to see you there. Path YouTube video link"
     bot.send_message(message.chat.id, text, reply_markup=None)
     bot.register_next_step_handler(message=message, callback=get_videos)
-    text = "It will take some time. Please, be patient"
-    bot.send_message(message.chat.id, text=text, reply_markup=None)
 
 @bot.message_handler(commands=['new_link'])
 def send_welcome_message(message):
