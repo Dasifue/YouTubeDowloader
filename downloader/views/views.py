@@ -30,3 +30,7 @@ def videos_list(request):
 
         return render(request=request, template_name="download.html", context=context)
     return render(request=request, template_name="download.html", context={"form": form})
+
+
+def about_view(request):
+    return render(request, "about.html", context={})

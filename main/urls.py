@@ -18,12 +18,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from downloader.views.views import videos_list
+from downloader.views.views import videos_list, about_view
 from downloader.views.download import download_video, download_audio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', videos_list, name='videos'),
     path('download_video/<str:video_id>/<str:resolution>', download_video, name='download_video'),
-    path('download_audio/<str:video_id>/', download_audio, name="download_audio")
+    path('download_audio/<str:video_id>/', download_audio, name="download_audio"),
+    path('about/', about_view, name='about')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
